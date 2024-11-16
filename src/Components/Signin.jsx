@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Signin = () => {
     return (
         <div className="pt-2 px-4 sm:px-6 lg:px-8">
@@ -33,7 +34,7 @@ const Signin = () => {
                     <div className="flex items-center justify-between">
                         <p className="text-sm text-sky-800">
                             No account?
-                            <a className="underline hover:text-sky-400" href="#">Sign up</a>
+                           <Link to="/signup"> <a className="underline hover:text-sky-400" href="#">Sign up</a></Link>
                         </p>
 
                         <button
