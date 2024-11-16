@@ -31,12 +31,14 @@ const Navbar = () => {
                    </Link> 
                 </li>
                 <li>
+                  <Link to="/suggestion">
                   <a
                     className="text-sky-800 px-4 py-1 rounded-full transition hover:text-white hover:bg-sky-800"
                     href="#"
                   >
                     Suggestion
                   </a>
+                  </Link>
                 </li>
                 <li>
                 <Link to="/about">  <a
@@ -57,7 +59,7 @@ const Navbar = () => {
               className="rounded-full bg-sky-800 px-8 py-2.5 text-sm font-medium text-white shadow hover:bg-white hover:text-sky-800"
               href="#"
             >
-              Login
+              Sign up/Login
             </a>
 
             <button
@@ -119,7 +121,7 @@ const Navbar = () => {
               className="rounded-full bg-sky-800 px-8 py-2.5 text-sm font-medium text-white shadow hover:bg-white hover:text-sky-800"
               href="#"
             >
-              Login
+              Sign up/Login
             </a>
           </div>
         </div>
