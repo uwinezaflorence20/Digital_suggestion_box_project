@@ -1,6 +1,6 @@
 import About from "./About";
 import SuggestionSample from "./SuggestionSample";
-
+import Footer from "./Footer";
 const Home = () => {
   return (
     <div>
@@ -29,6 +29,7 @@ const Home = () => {
 
       <About />
       <SuggestionSample/>
+      <Footer />
     </div>
   );
 };

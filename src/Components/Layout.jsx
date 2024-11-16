@@ -1,13 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
-import Footer from './Footer';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useState, useEffect } from 'react';
 
 const Layout = () => {
   const [isVisible, setIsVisible] = useState(false);
-
-  // Show button when page is scrolled down
   const toggleVisibility = () => {
     if (window.scrollY > 300) {
       setIsVisible(true);
@@ -32,9 +29,9 @@ const Layout = () => {
     <div>
       <Navbar />
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
 
-      {/* Back to Top Button */}
+   
       {isVisible && (
         <button
           onClick={scrollToTop}
