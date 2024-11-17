@@ -49,7 +49,6 @@ const Navbar = () => {
 
          
           <div className="flex items-center gap-4">
-  {/* Hide on small screens, visible on medium and larger screens */}
   <Link
     to="/signin"
     className="hidden md:block rounded-full bg-sky-800 px-8 py-2.5 text-sm font-medium text-white shadow hover:bg-white hover:text-sky-800"
@@ -57,7 +56,7 @@ const Navbar = () => {
     Sign up/Login
   </Link>
 
-  {/* Menu toggle button - Always visible on small screens */}
+  
   <button
     onClick={toggleMenu}
     className="block md:hidden rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
@@ -69,7 +68,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+    
       {isMenuOpen && (
         <div className="fixed inset-0 z-50 bg-white/95 p-6 md:hidden">
           <div className="flex items-center justify-between">

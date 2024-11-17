@@ -1,6 +1,7 @@
 import About from "./About";
 import SuggestionSample from "./SuggestionSample";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
@@ -16,12 +17,13 @@ const Home = () => {
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a
+             <Link to="/signup"><a
                 className="block w-full rounded-full bg-sky-800 px-12 py-3 text-sm font-medium text-white shadow hover:bg-white hover:text-sky-800 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
                 href="#"
               >
                 Get Started
               </a>
+              </Link> 
             </div>
           </div>
         </div>

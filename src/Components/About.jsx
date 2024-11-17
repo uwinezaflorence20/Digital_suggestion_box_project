@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const About = () => {
 return (
     <section>
@@ -20,12 +21,13 @@ return (
          suggestion box, allowing users to submit their feedback, ideas, and concerns anonymously or openly through an easy-to-use web interface.
         </p>
 
-        <a
+       <Link to="/signup"> <a
           href="#"
           className="mt-8 inline-block rounded-full bg-sky-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
         >
           Get Started Today
         </a>
+        </Link>
       </div>
     </div>
   </div>

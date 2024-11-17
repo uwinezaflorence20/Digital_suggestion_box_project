@@ -5,6 +5,12 @@ import About from './Components/About';
 import SuggestionSample from './Components/SuggestionSample';
 import Signin from './Components/Signin';
 import SignUp from './Components/SignUp';
+
+
+
+import Student from './Components/Student';
+import Layout2 from './Components/Layout2';
+import Suggestion from './Components/Suggestion';
 function App() {
   return (
     <div>
@@ -16,6 +22,11 @@ function App() {
           <Route path="/suggestion" element={<SuggestionSample />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<SignUp/>} />
+        </Route>
+        <Route path="/" element={<Layout2 />}>
+          <Route path="/student"element={<Student />} />
+          <Route path="/suggestion" element={<Suggestion />} />
+        
         </Route>
         </Routes>
         </BrowserRouter>
