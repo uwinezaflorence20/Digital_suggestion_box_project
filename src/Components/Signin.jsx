@@ -37,12 +37,13 @@ const Signin = () => {
                            <Link to="/signup"> <a className="underline hover:text-sky-400" href="#">Sign up</a></Link>
                         </p>
 
-                        <button
+                     <Link to="/student"> <button
                             type="submit"
                             className="inline-block rounded-lg bg-sky-800 px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-sky-800"
                         >
                             Sign in
                         </button>
+                        </Link> 
                     </div>
                 </form>
             </div>
