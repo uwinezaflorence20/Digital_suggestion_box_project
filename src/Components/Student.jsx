@@ -1,6 +1,7 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
 import Suggestion from "./Suggestion";
+import { Link } from "react-router-dom";
 
 const Student = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,12 +19,13 @@ const Student = () => {
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-10 text-md">
                 <li>
-                  <a
+                <Link to ="/inputsuggestion"> <a
                     className="text-sky-800 transition hover:text-gray-500/75"
                     href="#"
                   >
                     <IoIosAddCircleOutline className="text-2xl" />
                   </a>
+                  </Link> 
                 </li>
                 <li>
                   <a
@@ -34,16 +36,17 @@ const Student = () => {
                   </a>
                 </li>
                 <li>
-                  <a
+               <Link >   <a
                     className="text-gray-500 px-2 py-1 rounded-full transition hover:text-white hover:bg-sky-800"
                     href="#"
                   >
                     Pending
                   </a>
+                  </Link>
                 </li>
                 <li>
                   <a
-                    className="transition px-2 py-1 rounded-full hover:text-white hover:bg-sky-800"
+                    className="text-gray-500 px-2 py-1 rounded-full transition hover:text-white hover:bg-sky-800"
                     href="#"
                   >
                     Resolved

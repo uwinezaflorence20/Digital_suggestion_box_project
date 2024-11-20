@@ -1,6 +1,6 @@
 import { IoArrowUpCircleOutline } from "react-icons/io5";
 import { FaRegCommentDots } from "react-icons/fa";
-const Suggestion = () => {
+const Pending = () => {
   return (
     <div className="w-full mt-28 max-w-[90%] mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100">
       <div className="flex  text-sm text-gray-500 mb-4">
@@ -53,4 +53,4 @@ const Suggestion = () => {
     </div>
   );
 };
-export default Suggestion;
+export default Pending;

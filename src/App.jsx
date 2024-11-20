@@ -11,6 +11,8 @@ import SignUp from './Components/SignUp';
 import Student from './Components/Student';
 import Layout2 from './Components/Layout2';
 import Suggestion from './Components/Suggestion';
+import InputSuggestion from './Components/InputSuggetion';
+import Pending from './Components/Pending';
 function App() {
   return (
     <div>
@@ -26,7 +28,8 @@ function App() {
         <Route path="/" element={<Layout2 />}>
           <Route path="/student"element={<Student />} />
           <Route path="/suggestion" element={<Suggestion />} />
-        
+          <Route path="/inputsuggestion" element={<InputSuggestion/>} />
+          <Route path="/pending" element={<Pending/>} />
         </Route>
         </Routes>
         </BrowserRouter>

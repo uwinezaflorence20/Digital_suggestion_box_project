@@ -26,6 +26,10 @@ allowing students to focus on their studies without the burden of financial stre
         <div className="flex gap-4 text-sm text-gray-500 mb-4">
           <span>11:30 PM · 14/11/2024</span>
           <span>· 120 Views</span>
+          
+        </div>
+        <div>
+          
         </div>
         <hr></hr>
         <div className="flex gap-4 my-2  text-sm text-gray-600">
