@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoArrowUpCircleOutline } from "react-icons/io5";
 import { FaRegCommentDots } from "react-icons/fa";
 
-const Pending= () => {
+const MySuggestion = () => {
   // State to track upvotes and comment visibility
   const [upvotes, setUpvotes] = useState(98);
   const [isCommentVisible, setIsCommentVisible] = useState(false);
@@ -33,7 +33,16 @@ const Pending= () => {
         <div className="flex flex-col mx-4">
           <span className="font-bold">2220***23</span>
           <span className="text-gray-400">@mmindi</span>
+          
         </div>
+        <div className="flex w-full">
+  <p className=" px-3 py-2 text-gray-400 border border-red-600 rounded-md font-medium hover:bg-sky-200 transition ml-auto">
+    Expired
+  </p>
+</div>
+
+
+
       </div>
       <div className="text-base text-gray-700 leading-relaxed mb-6">
         <p>
@@ -67,17 +76,19 @@ const Pending= () => {
       </div>
       <hr></hr>
       <div className="flex gap-20 my-2 text-sm text-gray-600">
-        {/* Upvote Button */}
+       
         <IoArrowUpCircleOutline
           className="text-2xl cursor-pointer hover:text-blue-500"
           onClick={handleUpvote}
         />
-        {/* Comment Button */}
+       
         <FaRegCommentDots
           className="text-2xl cursor-pointer hover:text-blue-500"
           onClick={toggleCommentSection}
         />
+        <div className="flex w-full"> <button className="bg-sky-800 px-4 py-2 hover:bg-sky-600 text-white rounded-md  ml-auto"> Repost</button> </div>
       </div>
+      
       {/* Comment Section */}
       {isCommentVisible && (
         <div className="mt-4">
@@ -89,11 +100,11 @@ const Pending= () => {
           ></textarea>
           <button
             onClick={handleCommentPost}
-            className="mt-2 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+            className="mt-2 bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-blue-700"
           >
             Post Comment
           </button>
-          {/* Display Comments */}
+        
           <div className="mt-4">
             {comments.map((comment, index) => (
               <p key={index} className="bg-gray-200 p-2 rounded-md mb-2">
@@ -101,10 +112,13 @@ const Pending= () => {
               </p>
             ))}
           </div>
+          
         </div>
+        
       )}
+      
     </div>
   );
 };
 
-export default Pending;
+export default MySuggestion;

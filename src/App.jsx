@@ -13,6 +13,9 @@ import Layout2 from './Components/Layout2';
 import Suggestion from './Components/Suggestion';
 import InputSuggestion from './Components/InputSuggetion';
 import Pending from './Components/Pending';
+import Queue from './Components/Queue';
+import Resolved from './Components/Resolved';
+import MySuggestion from './Components/MySuggestion';
 function App() {
   return (
     <div>
@@ -30,6 +33,9 @@ function App() {
           <Route path="/suggestion" element={<Suggestion />} />
           <Route path="/inputsuggestion" element={<InputSuggestion/>} />
           <Route path="/pending" element={<Pending/>} />
+          <Route path="/queue" element={<Queue/>} />
+          <Route path="/resolved" element={<Resolved/>} />
+          <Route path="/mysuggestion" element={<MySuggestion/>} />
         </Route>
         </Routes>
         </BrowserRouter>

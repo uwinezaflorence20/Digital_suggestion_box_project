@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoArrowUpCircleOutline } from "react-icons/io5";
 import { FaRegCommentDots } from "react-icons/fa";
 
-const Pending= () => {
+const Queue = () => {
   // State to track upvotes and comment visibility
   const [upvotes, setUpvotes] = useState(98);
   const [isCommentVisible, setIsCommentVisible] = useState(false);
@@ -67,17 +67,19 @@ const Pending= () => {
       </div>
       <hr></hr>
       <div className="flex gap-20 my-2 text-sm text-gray-600">
-        {/* Upvote Button */}
+       
         <IoArrowUpCircleOutline
           className="text-2xl cursor-pointer hover:text-blue-500"
           onClick={handleUpvote}
         />
-        {/* Comment Button */}
+       
         <FaRegCommentDots
           className="text-2xl cursor-pointer hover:text-blue-500"
           onClick={toggleCommentSection}
         />
+        <div> <button className="bg-green-600 px-2 py-1 text-white rounded-md"> View reply</button> </div>
       </div>
+      
       {/* Comment Section */}
       {isCommentVisible && (
         <div className="mt-4">
@@ -89,11 +91,11 @@ const Pending= () => {
           ></textarea>
           <button
             onClick={handleCommentPost}
-            className="mt-2 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+            className="mt-2 bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-blue-700"
           >
             Post Comment
           </button>
-          {/* Display Comments */}
+        
           <div className="mt-4">
             {comments.map((comment, index) => (
               <p key={index} className="bg-gray-200 p-2 rounded-md mb-2">
@@ -101,10 +103,13 @@ const Pending= () => {
               </p>
             ))}
           </div>
+          
         </div>
+        
       )}
+      
     </div>
   );
 };
 
-export default Pending;
+export default Queue;

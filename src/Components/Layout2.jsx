@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-
+import Student from './Student';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useState, useEffect } from 'react';
 
@@ -27,7 +27,7 @@ const Layout = () => {
 
   return (
     <div>
-    
+    <Student/>
       <Outlet />   
       {isVisible && (
         <button
