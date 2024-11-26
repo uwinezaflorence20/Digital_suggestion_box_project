@@ -29,6 +29,7 @@ function App() {
           <Route path="/signup" element={<SignUp/>} />
         </Route>
         <Route path="/" element={<Layout2 />}>
+        <Route index element={<Queue />} />
           <Route path="/student"element={<Student />} />
           <Route path="/suggestion" element={<Suggestion />} />
           <Route path="/inputsuggestion" element={<InputSuggestion/>} />
