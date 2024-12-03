@@ -2,9 +2,9 @@ import { useState } from "react";
 import { IoArrowUpCircleOutline } from "react-icons/io5";
 import { FaRegCommentDots } from "react-icons/fa";
 
-const Pending= () => {
+const Queue = () => {
   // State to track upvotes and comment visibility
-  const [upvotes, setUpvotes] = useState(140);
+  const [upvotes, setUpvotes] = useState(98);
   const [isCommentVisible, setIsCommentVisible] = useState(false);
   const [comment, setComment] = useState(""); // Tracks the input comment
   const [comments, setComments] = useState([]); // Stores the list of comments
@@ -107,4 +107,4 @@ const Pending= () => {
   );
 };
 
-export default Pending;
+export default Queue;

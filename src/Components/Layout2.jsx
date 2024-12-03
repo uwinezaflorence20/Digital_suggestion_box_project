@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Student from './Student';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useState, useEffect } from 'react';
-
+import Footer from './Footer';
 const Layout = () => {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => {
@@ -28,7 +28,8 @@ const Layout = () => {
   return (
     <div>
     <Student/>
-      <Outlet />   
+      <Outlet /> 
+      <Footer />  
       {isVisible && (
         <button
           onClick={scrollToTop}

@@ -33,7 +33,7 @@ const Student = () => {
       <div className="w-full fixed top-0 bg-sky-100 z-30">
         <div className="flex h-16 items-center justify-between px-4 md:px-12">
           <div className="flex-1 flex items-center gap-4">
-            <img src="/Component 1.png" alt="Logo" className="w-24 h-10" />
+           <Link to='/'><img src="/Component 1.png" alt="Logo" className="w-24 h-10" /></Link> 
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-10 text-md">
                 <li>
@@ -44,7 +44,7 @@ const Student = () => {
                     <IoIosAddCircleOutline className="text-2xl" />
                   </button>
                 </li>
-                <Link to="/queue">   
+                <Link to="queue">   
                   <li>
                     <a className="text-white bg-sky-800 rounded-full px-4 py-1 transition hover:text-gray-500/75">
                       Queue
@@ -52,13 +52,13 @@ const Student = () => {
                   </li>
                 </Link>
                 <li>
-                  <Link to="/pending">
+                  <Link to="pending">
                     <a className="text-gray-500 px-2 py-1 rounded-full transition hover:text-white hover:bg-sky-800">
                       Pending
                     </a>
                   </Link>
                 </li>
-                <Link to="/resolved">
+                <Link to="resolved">
                   <li>
                     <a className="text-gray-500 px-2 py-1 rounded-full transition hover:text-white hover:bg-sky-800">
                       Resolved
@@ -87,7 +87,7 @@ const Student = () => {
                   role="menu"
                 >
                   <div className="p-2">
-                    <Link to="/mysuggestion">
+                    <Link to="mysuggestion">
                       <a
                         href="#"
                         className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50"
@@ -185,4 +185,4 @@ const Student = () => {
   );
 };
 
-export default Student;
+export default Student; 
