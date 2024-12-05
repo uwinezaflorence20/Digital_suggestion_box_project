@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const About = () => {
-  const handleHover = (text) => {
+  const handleHoverStart = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(utterance);
+  };
+
+  const handleHoverEnd = () => {
+    speechSynthesis.cancel(); // Stops any ongoing speech synthesis
   };
 
   // Animation variants
@@ -51,7 +55,8 @@ const About = () => {
             className="lg:py-24"
           >
             <h2
-              onMouseEnter={() => handleHover("Digital Suggestion Box")}
+              onMouseEnter={() => handleHoverStart("Digital Suggestion Box")}
+              onMouseLeave={handleHoverEnd}
               className="text-3xl font-bold mt-12 text-sky-800 sm:text-4xl"
             >
               Digital Suggestion Box
@@ -59,10 +64,11 @@ const About = () => {
 
             <p
               onMouseEnter={() =>
-                handleHover(
+                handleHoverStart(
                   "DS-Box is an online platform designed for the University of Rwanda College of Science and Technology to collect, manage, and respond to suggestions from students, staff, and faculty."
                 )
               }
+              onMouseLeave={handleHoverEnd}
               className="mt-4 text-md text-black"
             >
               DS-Box (Digital Suggestion Box) is an online platform designed for
@@ -76,7 +82,8 @@ const About = () => {
             {/* Button with Hover Animation */}
             <Link to="/signup">
               <motion.a
-                onMouseEnter={() => handleHover("Get Started Today")}
+                onMouseEnter={() => handleHoverStart("Get Started Today")}
+                onMouseLeave={handleHoverEnd}
                 whileHover="hover"
                 variants={buttonVariants}
                 transition={{ duration: 0.3 }}

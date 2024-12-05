@@ -8,6 +8,11 @@ const speakText = (text) => {
   window.speechSynthesis.speak(speech);
 };
 
+// Function to stop speech synthesis
+const stopSpeech = () => {
+  window.speechSynthesis.cancel();
+};
+
 const Signin = () => {
   return (
     <div className="pt-2 px-4 sm:px-6 lg:px-8">
@@ -16,6 +21,7 @@ const Signin = () => {
           <h1
             className="text-2xl text-sky-800 font-bold sm:text-3xl"
             onMouseEnter={() => speakText("Get started today!")}
+            onMouseLeave={stopSpeech} // Stop speech when cursor leaves
           >
             Get started today!
           </h1>
@@ -33,6 +39,7 @@ const Signin = () => {
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter Reg No"
                 onMouseEnter={() => speakText("Enter Registration Number")}
+                onMouseLeave={stopSpeech} // Stop speech when cursor leaves
               />
             </div>
           </div>
@@ -47,6 +54,7 @@ const Signin = () => {
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter password"
                 onMouseEnter={() => speakText("Enter your password")}
+                onMouseLeave={stopSpeech} // Stop speech when cursor leaves
               />
             </div>
           </div>
@@ -59,6 +67,7 @@ const Signin = () => {
                   className="underline hover:text-sky-400"
                   href="#"
                   onMouseEnter={() => speakText("Sign up link")}
+                  onMouseLeave={stopSpeech} // Stop speech when cursor leaves
                 >
                   Sign up
                 </a>
@@ -70,6 +79,7 @@ const Signin = () => {
                 type="submit"
                 className="inline-block rounded-lg bg-sky-800 px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-sky-800"
                 onMouseEnter={() => speakText("Sign in button")}
+                onMouseLeave={stopSpeech} // Stop speech when cursor leaves
               >
                 Sign in
               </button>
