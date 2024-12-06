@@ -33,7 +33,7 @@ const About = () => {
       viewport={{ once: true, amount: 0.5 }}
       className="overflow-hidden"
     >
-      <div className="mx-auto bg-white max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+      <div className="mx-auto bg-white dark:bg-gray-800 dark:text-gray-200 max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
           {/* Image Section with Animation */}
           <motion.div
@@ -69,7 +69,7 @@ const About = () => {
                 )
               }
               onMouseLeave={handleHoverEnd}
-              className="mt-4 text-md text-black"
+              className="mt-4 text-md  dark:text-gray-200 text-black"
             >
               DS-Box (Digital Suggestion Box) is an online platform designed for
               the University of Rwanda College of Science and Technology to
@@ -87,7 +87,7 @@ const About = () => {
                 whileHover="hover"
                 variants={buttonVariants}
                 transition={{ duration: 0.3 }}
-                className="mt-8 inline-block rounded-full bg-sky-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
+                className="mt-8 inline-block dark:bg-gray-900 dark:text-gray-200 rounded-full bg-sky-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
               >
                 Get Started Today
               </motion.a>

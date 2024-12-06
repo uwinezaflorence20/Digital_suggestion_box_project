@@ -27,7 +27,7 @@ const Layout = () => {
 
   return (
     <div>
-    <Student/>
+     <Student/> 
       <Outlet /> 
       <Footer />  
       {isVisible && (

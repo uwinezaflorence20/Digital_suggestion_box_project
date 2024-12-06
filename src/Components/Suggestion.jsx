@@ -1,6 +1,6 @@
 import { IoArrowUpCircleOutline } from "react-icons/io5";
 import { FaRegCommentDots } from "react-icons/fa";
-import { useState } from "react";
+
 
 const Suggestion = () => {
   // Function to trigger speech
@@ -11,24 +11,34 @@ const Suggestion = () => {
     window.speechSynthesis.speak(speech);
   };
 
+  // Function to stop speech
+  const stopSpeech = () => {
+    window.speechSynthesis.cancel();
+  };
+
   const suggestionText = "Sample Suggestion from a Student";
 
   return (
-    <div className="w-full mt-28 max-w-[90%] mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100">
+    <div className="w-full  max-w-[90%] mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100">
       {/* Heading indicating it's a sample suggestion */}
-      <h2 className="text-xl font-bold text-sky-800 mb-4">
+      <h2
+        className="text-xl font-bold text-sky-800 mb-4"
+        onMouseEnter={() => speakText(suggestionText)}  // Speak when mouse enters
+        onMouseLeave={stopSpeech}  // Stop speech when mouse leaves
+      >
         Sample Suggestion from a Student
       </h2>
       
       {/* Button to trigger the voice */}
       <button
-        onClick={() => speakText(suggestionText)}
+        onMouseEnter={() => speakText(suggestionText)}  // Speak when mouse enters
+        onMouseLeave={stopSpeech}  // Stop speech when mouse leaves
         className="text-sm font-medium text-sky-800 bg-white px-4 py-2 rounded-full hover:bg-sky-800 hover:text-white"
       >
         Listen to Suggestion Title
       </button>
 
-      <div className="flex text-sm text-gray-500 mb-4">
+      <div className="flex text-sm text-gray-500 mb-4 dark:bg-gray-800 dark:text-gray-200">
         <div className="size-10 rounded-full bg-sky-800">
           <p className="text-white mt-2 text-center">M</p>
         </div>
@@ -38,7 +48,7 @@ const Suggestion = () => {
         </div>
       </div>
 
-      <div className="text-base text-gray-700 leading-relaxed mb-6">
+      <div className="text-base dark:bg-gray-800 dark:text-gray-200 text-gray-700 leading-relaxed mb-6">
         <p>
           I am writing to request an increase in the monthly living allowance
           for students at the University of Rwanda from RWF 40,000 to RWF
@@ -75,8 +85,16 @@ const Suggestion = () => {
       <hr />
 
       <div className="flex gap-20 my-2 text-sm text-gray-600">
-        <IoArrowUpCircleOutline className="text-2xl" />
-        <FaRegCommentDots className="text-2xl" />
+        <IoArrowUpCircleOutline
+          className="text-2xl"
+          onMouseEnter={() => speakText("Upvote button")}
+          onMouseLeave={stopSpeech} // Stop speech when cursor leaves
+        />
+        <FaRegCommentDots
+          className="text-2xl"
+          onMouseEnter={() => speakText("Comment button")}
+          onMouseLeave={stopSpeech} // Stop speech when cursor leaves
+        />
       </div>
     </div>
   );

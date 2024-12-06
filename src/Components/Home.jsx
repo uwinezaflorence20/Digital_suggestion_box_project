@@ -17,12 +17,12 @@ const Home = () => {
   return (
     <div>
       {/* Section with Parallax Effect and Animated Elements */}
-      <section className="mt-12 bg-blue-50/50">
+      <section className=" bg-blue-50/50 dark:bg-gray-800 dark:text-gray-200">
         <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
           <div className="mx-auto max-w-3xl text-center">
             {/* Title with Initial Fade-In and Upward Movement */}
             <motion.h1
-              className="text-3xl font-extrabold text-sky-800 sm:text-5xl"
+              className="text-3xl font-extrabold dark:text-gray-400 text-sky-800 sm:text-5xl"
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
@@ -38,7 +38,7 @@ const Home = () => {
                 )
               }
               onMouseLeave={handleHoverEnd}
-              className="mt-4 sm:text-xl/relaxed text-black font-extralight"
+              className="mt-4 sm:text-xl/relaxed dark:text-gray-200 text-black font-extralight"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
@@ -57,7 +57,7 @@ const Home = () => {
                 <motion.a
                   onMouseEnter={() => handleHoverStart("Get Started")}
                   onMouseLeave={handleHoverEnd}
-                  className="block w-full rounded-full bg-sky-800 px-12 py-3 text-sm font-medium text-white shadow hover:bg-white hover:text-sky-800 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
+                  className="block w-full rounded-full bg-sky-800 px-12 py-3 text-sm font-medium dark:bg-gray-900 dark:text-gray-200 text-white shadow hover:bg-white hover:text-sky-800 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
                   whileHover={{ scale: 1.1 }}
                 >
                   Get Started

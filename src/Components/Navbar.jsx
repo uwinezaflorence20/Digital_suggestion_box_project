@@ -1,17 +1,18 @@
 import { CiMenuFries } from "react-icons/ci";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa"; // Import the dark mode icons
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false); // Manage dark mode state
   const location = useLocation(); // Get the current location
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Toggle dark mode
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
     document.documentElement.classList.toggle("dark");
@@ -74,6 +75,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
+            {/* Dark Mode Toggle Button */}
             <button
               onClick={toggleDarkMode}
               className="rounded-full p-2 transition hover:bg-gray-200 dark:hover:bg-gray-800"

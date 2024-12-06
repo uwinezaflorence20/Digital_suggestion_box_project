@@ -1,6 +1,6 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; // Use NavLink instead of Link
 import InputSuggestion from "./InputSuggetion";
 
 const Student = () => {
@@ -33,7 +33,10 @@ const Student = () => {
       <div className="w-full fixed top-0 bg-sky-100 z-30">
         <div className="flex h-16 items-center justify-between px-4 md:px-12">
           <div className="flex-1 flex items-center gap-4">
-           <Link to='/'><img src="/Component 1.png" alt="Logo" className="w-24 h-10" /></Link> 
+            <NavLink to="/">
+              <img src="/Component 1.png" alt="Logo" className="w-24 h-10" />
+            </NavLink>
+
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-10 text-md">
                 <li>
@@ -44,27 +47,40 @@ const Student = () => {
                     <IoIosAddCircleOutline className="text-2xl" />
                   </button>
                 </li>
-                <Link to="queue">   
-                  <li>
-                    <a className="text-white bg-sky-800 rounded-full px-4 py-1 transition hover:text-gray-500/75">
-                      Queue
-                    </a>
-                  </li>
-                </Link>
+
+                {/* Use NavLink for active link styling */}
                 <li>
-                  <Link to="pending">
-                    <a className="text-gray-500 px-2 py-1 rounded-full transition hover:text-white hover:bg-sky-800">
-                      Pending
-                    </a>
-                  </Link>
+                  <NavLink
+                    to="queue"
+                    className={({ isActive }) =>
+                      `text-gray-500 rounded-full px-4 py-1 transition ${isActive ? "bg-sky-800" : "hover:text-gray-500/75"}`
+                    }
+                  >
+                    Queue
+                  </NavLink>
                 </li>
-                <Link to="resolved">
-                  <li>
-                    <a className="text-gray-500 px-2 py-1 rounded-full transition hover:text-white hover:bg-sky-800">
-                      Resolved
-                    </a>
-                  </li>
-                </Link>
+
+                <li>
+                  <NavLink
+                    to="pending"
+                    className={({ isActive }) =>
+                      `text-gray-500 px-2 py-1 rounded-full transition ${isActive ? "bg-sky-800 text-white" : "hover:text-white hover:bg-sky-800"}`
+                    }
+                  >
+                    Pending
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="resolved"
+                    className={({ isActive }) =>
+                      `text-gray-500 px-2 py-1 rounded-full transition ${isActive ? "bg-sky-800 text-white" : "hover:text-white hover:bg-sky-800"}`
+                    }
+                  >
+                    Resolved
+                  </NavLink>
+                </li>
               </ul>
             </nav>
           </div>
@@ -87,7 +103,7 @@ const Student = () => {
                   role="menu"
                 >
                   <div className="p-2">
-                    <Link to="mysuggestion">
+                    <NavLink to="mysuggestion">
                       <a
                         href="#"
                         className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50"
@@ -96,12 +112,12 @@ const Student = () => {
                       >
                         My profile
                       </a>
-                    </Link>
+                    </NavLink>
                   </div>
 
                   <div className="p-2">
                     <form method="POST" action="#">
-                      <Link to="/">
+                      <NavLink to="/">
                         <button
                           type="submit"
                           className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-red-700 hover:bg-red-50"
@@ -109,7 +125,7 @@ const Student = () => {
                         >
                           Logout
                         </button>
-                      </Link>
+                      </NavLink>
                     </form>
                   </div>
                 </div>
@@ -155,21 +171,34 @@ const Student = () => {
                   </button>
                 </li>
                 <li>
-                  <a className="text-sky-800 block transition hover:text-gray-500/75">
+                  <NavLink
+                    to="queue"
+                    className={({ isActive }) =>
+                      `text-sky-800 block transition ${isActive ? "bg-sky-800 text-white" : "hover:text-gray-500/75"}`
+                    }
+                  >
                     Queue
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/pending">
-                    <a className="text-sky-800 block transition hover:text-gray-500/75">
-                      Pending
-                    </a>
-                  </Link>
+                  <NavLink
+                    to="pending"
+                    className={({ isActive }) =>
+                      `text-sky-800 block transition ${isActive ? "bg-sky-800 text-white" : "hover:text-gray-500/75"}`
+                    }
+                  >
+                    Pending
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="text-sky-800 block transition hover:text-gray-500/75">
+                  <NavLink
+                    to="resolved"
+                    className={({ isActive }) =>
+                      `text-sky-800 block transition ${isActive ? "bg-sky-800 text-white" : "hover:text-gray-500/75"}`
+                    }
+                  >
                     Resolved
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </nav>
@@ -185,4 +214,4 @@ const Student = () => {
   );
 };
 
-export default Student; 
+export default Student;

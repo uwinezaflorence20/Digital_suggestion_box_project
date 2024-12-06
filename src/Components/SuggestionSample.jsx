@@ -3,18 +3,9 @@ import { FaRegCommentDots } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const SuggestionSample = () => {
-  const handleHoverStart = (text) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    speechSynthesis.speak(utterance);
-  };
-
-  const handleHoverEnd = () => {
-    speechSynthesis.cancel(); // Stops any ongoing speech synthesis
-  };
-
   return (
     <motion.div
-      className="w-full mt-28 max-w-[90%] mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100"
+      className="w-full mt-20  max-w-[90%] dark:bg-gray-800 dark:text-white mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
@@ -29,20 +20,17 @@ const SuggestionSample = () => {
         </div>
       </div>
       <motion.div
-        className="text-base text-gray-700 leading-relaxed mb-6"
+        className="text-base dark:text-gray-200 text-gray-700 leading-relaxed mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
-        <p
-          onMouseEnter={() =>
-            handleHoverStart(
-              "I am writing to request an increase in the monthly living allowance for students at the University of Rwanda from RWF 40,000 to RWF 100,000. The current allowance has not kept pace with the rising costs of living, including significant increases in food and accommodation prices, which have made it increasingly difficult for students to meet their basic needs. Many students are struggling to afford essentials, which negatively impacts their academic performance and overall well-being. An adjustment to RWF 100,000 would provide much-needed financial support, allowing students to focus on their studies without the burden of financial stress. Thank you for considering this important request."
-            )
-          }
-          onMouseLeave={handleHoverEnd}
-        >
-          I am writing to request an increase in the monthly living allowance for students at the University of Rwanda from RWF 40,000 to RWF 100,000. The current allowance has not kept pace with the rising costs of living, including significant increases in food and accommodation prices, which have made it increasingly difficult for students to meet their basic needs. Many students are struggling to afford essentials, which negatively impacts their academic performance and overall well-being. An adjustment to RWF 100,000 would provide much-needed financial support, allowing students to focus on their studies without the burden of financial stress. Thank you for considering this important request.
+        <p>
+          I am writing to request an increase in the monthly living allowance for students at the University of Rwanda from RWF 40,000 to RWF 100,000.
+          The current allowance has not kept pace with the rising costs of living, including significant increases in food and accommodation prices, which 
+          have made it increasingly difficult for students to meet their basic needs. Many students are struggling to afford essentials, which negatively 
+          impacts their academic performance and overall well-being. An adjustment to RWF 100,000 would provide much-needed financial support, 
+          allowing students to focus on their studies without the burden of financial stress. Thank you for considering this important request.
         </p>
       </motion.div>
       <div className="flex gap-4 text-sm text-gray-500 mb-4">

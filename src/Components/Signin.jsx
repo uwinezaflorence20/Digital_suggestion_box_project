@@ -15,11 +15,11 @@ const stopSpeech = () => {
 
 const Signin = () => {
   return (
-    <div className="pt-2 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-screen-md mt-20 bg-sky-100 rounded-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="pt-2 mb-8 px-4 sm:px-6 lg:px-8 dark:bg-gray-900 dark:text-gray-200">
+      <div className="mx-auto max-w-screen-md mt-20 bg-sky-100 rounded-3xl px-4 py-16 sm:px-6 lg:px-8 dark:bg-gray-800 dark:text-gray-200">
         <div className="mx-auto max-w-lg text-center">
           <h1
-            className="text-2xl text-sky-800 font-bold sm:text-3xl"
+            className="text-2xl text-sky-800 font-bold sm:text-3xl dark:text-white"
             onMouseEnter={() => speakText("Get started today!")}
             onMouseLeave={stopSpeech} // Stop speech when cursor leaves
           >
@@ -36,7 +36,7 @@ const Signin = () => {
             <div className="relative">
               <input
                 type="text"
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 placeholder="Enter Reg No"
                 onMouseEnter={() => speakText("Enter Registration Number")}
                 onMouseLeave={stopSpeech} // Stop speech when cursor leaves
@@ -51,7 +51,7 @@ const Signin = () => {
             <div className="relative">
               <input
                 type="password"
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 placeholder="Enter password"
                 onMouseEnter={() => speakText("Enter your password")}
                 onMouseLeave={stopSpeech} // Stop speech when cursor leaves
@@ -60,11 +60,11 @@ const Signin = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <p className="text-sm text-sky-800">
+            <p className="text-sm text-sky-800 dark:text-sky-300">
               No account?{" "}
               <Link to="/signup">
                 <a
-                  className="underline hover:text-sky-400"
+                  className="underline hover:text-sky-400 dark:hover:text-sky-200"
                   href="#"
                   onMouseEnter={() => speakText("Sign up link")}
                   onMouseLeave={stopSpeech} // Stop speech when cursor leaves
@@ -77,7 +77,7 @@ const Signin = () => {
             <Link to="/student">
               <button
                 type="submit"
-                className="inline-block rounded-lg bg-sky-800 px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-sky-800"
+                className="inline-block rounded-lg bg-sky-800 px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-sky-800 dark:bg-sky-700 dark:hover:bg-sky-600 dark:hover:text-white"
                 onMouseEnter={() => speakText("Sign in button")}
                 onMouseLeave={stopSpeech} // Stop speech when cursor leaves
               >

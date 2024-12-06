@@ -3,8 +3,11 @@ import Navbar from './Navbar';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useState, useEffect } from 'react';
 import Footer from './Footer';
+
 const Layout = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
   const toggleVisibility = () => {
     if (window.scrollY > 300) {
       setIsVisible(true);
@@ -20,19 +23,41 @@ const Layout = () => {
     });
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+    const newMode = !darkMode ? 'dark' : 'light';
+    localStorage.setItem('theme', newMode); // Save preference in localStorage
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (
+      savedTheme === 'dark' ||
+      (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      setDarkMode(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
   useEffect(() => {
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   return (
-    <div>
-      <Navbar />
+    <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <Outlet />
-      <Footer/>
-      {/* <Footer /> */}
-
-   
+      <Footer />
+      
       {isVisible && (
         <button
           onClick={scrollToTop}

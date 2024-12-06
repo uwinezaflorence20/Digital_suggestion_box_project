@@ -25,7 +25,7 @@ const Queue = () => {
   };
 
   return (
-    <div className="w-full mt-28 max-w-[90%] mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100">
+    <div className="w-full mt-28 max-w-[90%] dark:bg-gray-800 dark:text-gray-200 mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100">
       <div className="flex text-sm text-gray-500 mb-4">
         <div className="size-10 rounded-full bg-sky-800">
           <p className="text-white mt-2 text-center">M</p>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Function to trigger speech synthesis
 const speakText = (text) => {
@@ -9,7 +9,7 @@ const speakText = (text) => {
   window.speechSynthesis.speak(speech);
 };
 
-const AdminSignIn = () => {
+const AdminSignUp = () => {
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,14 +32,14 @@ const AdminSignIn = () => {
   };
 
   return (
-    <div className="pt-2 mb-8 px-4 sm:px-6 lg:px-8 dark:bg-gray-800">
-      <div className="mx-auto max-w-screen-md mt-20 bg-sky-100 rounded-3xl px-4 py-16 sm:px-6 lg:px-8 dark:bg-gray-900">
+    <div className="pt-2 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-md mt-20 bg-sky-100 rounded-3xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg text-center">
           <h1
-            className="text-2xl text-sky-800 font-bold sm:text-3xl dark:text-white"
+            className="text-2xl text-sky-800 font-bold sm:text-3xl"
             onMouseEnter={() => speakText("Get started today!")}
           >
-            Sign In Admin
+            Sign in
           </h1>
         </div>
 
@@ -57,7 +57,7 @@ const AdminSignIn = () => {
                 id="role"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter Role"
                 onMouseEnter={() => speakText("Enter Role")}
               />
@@ -75,7 +75,7 @@ const AdminSignIn = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter Password"
                 onMouseEnter={() => speakText("Enter your password")}
               />
@@ -83,12 +83,25 @@ const AdminSignIn = () => {
           </div>
 
           <div className="flex items-center justify-between">
+            <p className="text-sm text-sky-800">
+              Have an account?{" "}
+              <Link to="/signin">
+                <a
+                  className="underline hover:text-sky-400"
+                  href="#"
+                  onMouseEnter={() => speakText("Go to login page")}
+                >
+                  Login
+                </a>
+              </Link>
+            </p>
+
             <button
               type="submit"
-              className="inline-block rounded-lg bg-sky-800 px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-sky-800 dark:bg-sky-700 dark:hover:bg-sky-600 dark:hover:text-white"
-              onMouseEnter={() => speakText("Sign In button")}
+              className="inline-block rounded-lg bg-sky-800 px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-sky-800"
+              onMouseEnter={() => speakText("Create Account button")}
             >
-              Sign In
+              Create Account
             </button>
           </div>
         </form>
@@ -97,4 +110,4 @@ const AdminSignIn = () => {
   );
 };
 
-export default AdminSignIn;
+export default AdminSignUp;
