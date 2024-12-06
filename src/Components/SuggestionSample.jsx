@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const SuggestionSample = () => {
   return (
     <motion.div
-      className="w-full mt-20  max-w-[90%] dark:bg-gray-800 dark:text-white mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100"
+      className="w-full mt-12  max-w-[90%] dark:bg-gray-800 dark:text-white mx-auto my-6 border border-gray-300 rounded-lg p-6 bg-gray-100"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
