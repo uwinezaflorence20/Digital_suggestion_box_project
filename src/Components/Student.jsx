@@ -34,7 +34,7 @@ const Student = () => {
         <div className="flex h-16 items-center justify-between px-4 md:px-12">
           <div className="flex-1 flex items-center gap-4">
             <NavLink to="/">
-              <img src="/Component 1.png" alt="Logo" className="w-24 h-10" />
+              <img src="/Component 1.svg" alt="Logo" className="w-24 h-10" />
             </NavLink>
 
             <nav aria-label="Global" className="hidden md:block">

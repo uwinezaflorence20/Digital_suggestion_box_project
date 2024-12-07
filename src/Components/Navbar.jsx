@@ -1,12 +1,26 @@
 import { CiMenuFries } from "react-icons/ci";
 import { FaMoon, FaSun } from "react-icons/fa"; // Import the dark mode icons
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // Manage dark mode state
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Initialize dark mode state from localStorage or system preference
+    return localStorage.getItem("theme") === "dark" || 
+           window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
   const location = useLocation(); // Get the current location
+
+  useEffect(() => {
+    // Apply the theme on initial render
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,8 +28,12 @@ const Navbar = () => {
 
   // Toggle dark mode
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark");
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    document.documentElement.classList.toggle("dark", newTheme);
+
+    // Save the user preference to localStorage
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
   };
 
   const handleHover = (text) => {
@@ -30,7 +48,7 @@ const Navbar = () => {
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="block text-teal-600 dark:text-white">
-            <img src="/Component 1.png" alt="Logo" />
+            <img src="/Component 1.svg" alt="Logo" />
           </Link>
           <div className="hidden md:block">
             <nav aria-label="Global">

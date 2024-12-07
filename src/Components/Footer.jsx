@@ -9,7 +9,7 @@ const Footer = () => {
             <div className="flex justify-center text-teal-600 lg:justify-start">
               <a className="block text-teal-600" href="#">
                 <span className="sr-only">Home</span>
-                <img src="/Component 1.png" alt="Logo" />
+                <img src="/Component 1.svg" alt="Logo" />
               </a>
             </div>
           </div>
