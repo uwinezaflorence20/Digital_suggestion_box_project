@@ -9,6 +9,7 @@ const InputSuggestion = ({ closeModal, token }) => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  // Text-to-speech helper functions
   const speakText = (text) => {
     const speech = new SpeechSynthesisUtterance();
     speech.text = text;
@@ -20,31 +21,42 @@ const InputSuggestion = ({ closeModal, token }) => {
     window.speechSynthesis.cancel();
   };
 
+  // Function to post a suggestion
   const postSuggestion = async () => {
     setLoading(true);
     setError("");
     setSuccess("");
 
     try {
+      const payload = {
+        by: 123, // Replace with the actual user ID from the session if available
+        suggestion,
+        tags: tags.split(",").map((tag) => tag.trim()), // Split tags into an array
+      };
+
+      console.log("Request Payload:", payload); // Debug: Log the payload
+
       const response = await axios.post(
-        "https://dsb-yf9s.onrender.com/suggestions",
-        {
-          by: 123, // Replace with actual user ID if available
-          suggestion,
-          tags: tags.split(",").map((tag) => tag.trim()), // Split tags into an array
-        },
+        "https://dsb-yf9s.onrender.com/suggestion",
+        payload,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Ensure the token is valid
           },
         }
       );
 
+      console.log("Response Data:", response.data); // Debug: Log the response
       setSuccess("Suggestion posted successfully!");
       setSuggestion("");
       setTags("");
     } catch (err) {
+      console.error(
+        "Error Response:",
+        err.response ? err.response.data : err.message
+      ); // Log the full error
+
       if (err.response && err.response.data) {
         setError(err.response.data.message || "Failed to post suggestion.");
       } else {
@@ -55,12 +67,17 @@ const InputSuggestion = ({ closeModal, token }) => {
     }
   };
 
+  // Component UI
   return (
     isOpen && (
       <>
+        {/* Background Overlay */}
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
+        {/* Modal */}
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg w-[95%] md:w-[60%] lg:w-[80%] p-6">
+            {/* Modal Header */}
             <div className="flex justify-between items-center">
               <h2
                 className="text-lg font-semibold"
@@ -85,6 +102,7 @@ const InputSuggestion = ({ closeModal, token }) => {
               </button>
             </div>
 
+            {/* Suggestion Input */}
             <textarea
               className="w-full h-40 mt-4 p-3 border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Write your suggestion here..."
@@ -94,6 +112,7 @@ const InputSuggestion = ({ closeModal, token }) => {
               onMouseLeave={stopSpeech}
             ></textarea>
 
+            {/* Tags Input and Submit Button */}
             <div className="mt-4 flex flex-wrap items-center gap-4">
               <div className="flex-grow gap-2">
                 <label className="text-sm text-gray-500">
@@ -121,6 +140,7 @@ const InputSuggestion = ({ closeModal, token }) => {
               </button>
             </div>
 
+            {/* Success and Error Messages */}
             {success && <p className="text-green-600 mt-4">{success}</p>}
             {error && <p className="text-red-600 mt-4">{error}</p>}
           </div>

@@ -7,8 +7,10 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Initialize dark mode state from localStorage or system preference
-    return localStorage.getItem("theme") === "dark" || 
-           window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return (
+      localStorage.getItem("theme") === "dark" ||
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    );
   });
 
   const location = useLocation(); // Get the current location
@@ -82,7 +84,9 @@ const Navbar = () => {
                     to="/about"
                     onMouseEnter={() => handleHover("About")}
                     className={`${
-                      isActive("/about") ? "text-white bg-sky-800" : "text-sky-800"
+                      isActive("/about")
+                        ? "text-white bg-sky-800"
+                        : "text-sky-800"
                     } dark:text-white px-4 py-1 rounded-full transition hover:text-white hover:bg-sky-800`}
                   >
                     About
@@ -107,7 +111,7 @@ const Navbar = () => {
             </button>
 
             <Link
-              to="/selection"
+              to="/signin"
               onMouseEnter={() => handleHover("Sign in or Sign up")}
               className="hidden md:block rounded-full bg-sky-800 px-8 py-2.5 text-sm font-medium text-white shadow hover:bg-white hover:text-sky-800"
             >
@@ -186,7 +190,7 @@ const Navbar = () => {
           <div className="mt-8">
             <Link
               onMouseEnter={() => handleHover("Sign in or Sign up")}
-              to="/selection"
+              to="/signin"
               onClick={toggleMenu}
               className="rounded-full bg-sky-800 px-8 py-2.5 text-sm font-medium text-white shadow hover:bg-white hover:text-sky-800"
             >

@@ -25,8 +25,8 @@ const Layout = () => {
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
-    const newMode = !darkMode ? 'dark' : 'light';
-    localStorage.setItem('theme', newMode); // Save preference in localStorage
+    const newMode = !darkMode ? 'light' : '';
+    localStorage.setItem('theme', newMode); 
   };
 
   useEffect(() => {

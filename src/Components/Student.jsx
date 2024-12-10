@@ -1,12 +1,16 @@
-import { IoIosAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
 import { NavLink } from "react-router-dom"; // Use NavLink instead of Link
+import { IoIosAddCircleOutline } from "react-icons/io";
 import InputSuggestion from "./InputSuggetion";
 
 const Student = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Retrieve username from localStorage
+  const username = localStorage.getItem("username");
+  const firstLetter = username ? username.charAt(0).toUpperCase() : 'U'; // Default to 'U' if no username found
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -17,11 +21,11 @@ const Student = () => {
   };
 
   const openModal = () => {
-    setIsModalOpen(true); 
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
   };
 
   const handleProfileClick = () => {
@@ -94,7 +98,8 @@ const Student = () => {
                 onClick={toggleMenu}
               >
                 <span className="sr-only">Toggle dashboard menu</span>
-                <h1 className="w-10 h-10 text-white pt-2 bg-sky-800">M</h1>
+                {/* Display the first letter of the username inside the button */}
+                <h1 className="w-10 h-10 text-white pt-2 bg-sky-800">{firstLetter}</h1>
               </button>
 
               {isMenuOpen && (

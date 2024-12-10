@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 // Function to trigger speech synthesis
 const speakText = (text) => {
   const speech = new SpeechSynthesisUtterance();
@@ -83,6 +83,17 @@ const AdminSignIn = () => {
           </div>
 
           <div className="flex items-center justify-between">
+          <p className="text-sm text-sky-800 dark:text-sky-300">
+              No account?{" "}
+              <Link to="/signup">
+                <span
+                  className="underline hover:text-sky-400 dark:hover:text-sky-200"
+                
+                >
+                  Sign up
+                </span>
+              </Link>
+            </p>
             <button
               type="submit"
               className="inline-block rounded-lg bg-sky-800 px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-sky-800 dark:bg-sky-700 dark:hover:bg-sky-600 dark:hover:text-white"

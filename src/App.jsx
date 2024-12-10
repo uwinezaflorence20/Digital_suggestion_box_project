@@ -5,8 +5,7 @@ import About from "./Components/About";
 import SuggestionSample from "./Components/SuggestionSample";
 import Signin from "./Components/Signin";
 import SignUp from "./Components/SignUp";
-import RoleSelection from "./Components/RoleSelection";
-import AdminSignIn from "./Components/AdminSignIn";
+
 import Home2 from "./Components/Home2";
 import Layout2 from "./Components/Layout2";
 import Suggestion from "./Components/Suggestion";
@@ -28,8 +27,7 @@ function App() {
             <Route path="suggestion" element={<SuggestionSample />} />
             <Route path="signin" element={<Signin />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="selection" element={<RoleSelection />} />
-            <Route path="adminsignin" element={<AdminSignIn />} />
+           
           </Route>
 
           {/* Student Routes */}
