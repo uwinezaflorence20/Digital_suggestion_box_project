@@ -1,18 +1,30 @@
 import { useState } from "react";
 import axios from "axios";
+import Notification from "./Notification"; // Importing the Notification component
 
-const InputSuggestion = ({ closeModal, token }) => {
+const InputSuggestion = ({ closeModal }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [suggestion, setSuggestion] = useState("");
-  const [tags, setTags] = useState("");
+  const [tagAuthority, setTagAuthority] = useState(""); // For dropdown selection
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [notification, setNotification] = useState({ message: "", type: "" });
+
+  // List of roles for the dropdown
+  const roles = [
+    "CompusAdmin",
+    "Principal",
+    "Dean",
+    "Hod-CS",
+    "Hod-CSE",
+    "Hod-IS",
+    "Hod-IT",
+    "Register",
+    "GuildPresident",
+  ];
 
   // Text-to-speech helper functions
   const speakText = (text) => {
-    const speech = new SpeechSynthesisUtterance();
-    speech.text = text;
+    const speech = new SpeechSynthesisUtterance(text);
     speech.lang = "en-US";
     window.speechSynthesis.speak(speech);
   };
@@ -24,44 +36,42 @@ const InputSuggestion = ({ closeModal, token }) => {
   // Function to post a suggestion
   const postSuggestion = async () => {
     setLoading(true);
-    setError("");
-    setSuccess("");
+    setNotification({ message: "", type: "" });
 
     try {
+      const token = localStorage.getItem("token"); // Retrieve token from localStorage
+      if (!token) throw new Error("You must be logged in to post a suggestion.");
+
       const payload = {
-        by: 123, // Replace with the actual user ID from the session if available
-        suggestion,
-        tags: tags.split(",").map((tag) => tag.trim()), // Split tags into an array
+        by: 123, // Replace with the actual user ID if available
+        content: suggestion.trim(),
+        tagAuthority: tagAuthority, // Attach selected role
       };
 
-      console.log("Request Payload:", payload); // Debug: Log the payload
-
       const response = await axios.post(
-        "https://dsb-yf9s.onrender.com/suggestion",
+        "https://dsb-yf9s.onrender.com/suggestion", // Replace with your API endpoint
         payload,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Ensure the token is valid
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      console.log("Response Data:", response.data); // Debug: Log the response
-      setSuccess("Suggestion posted successfully!");
+      // Success handling
+      setNotification({ message: "Suggestion posted successfully!", type: "green" });
       setSuggestion("");
-      setTags("");
-    } catch (err) {
-      console.error(
-        "Error Response:",
-        err.response ? err.response.data : err.message
-      ); // Log the full error
+      setTagAuthority("");
 
-      if (err.response && err.response.data) {
-        setError(err.response.data.message || "Failed to post suggestion.");
-      } else {
-        setError("An error occurred. Please try again.");
-      }
+      // Auto-close modal after success (optional)
+      setTimeout(() => {
+        closeModal();
+      }, 3000);
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.error || err.message || "An unexpected error occurred.";
+      setNotification({ message: errorMessage, type: "red" });
     } finally {
       setLoading(false);
     }
@@ -76,7 +86,7 @@ const InputSuggestion = ({ closeModal, token }) => {
 
         {/* Modal */}
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg w-[95%] md:w-[60%] lg:w-[80%] p-6">
+          <div className="bg-white rounded-lg shadow-lg w-[95%] md:w-[70%] lg:w-[80%] p-6">
             {/* Modal Header */}
             <div className="flex justify-between items-center">
               <h2
@@ -86,9 +96,6 @@ const InputSuggestion = ({ closeModal, token }) => {
               >
                 Enter Your Suggestion
               </h2>
-              <p className="text-green-600 text-sm font-medium mt-2">
-                4/5 credits left
-              </p>
               <button
                 onClick={() => {
                   setIsOpen(false);
@@ -112,39 +119,52 @@ const InputSuggestion = ({ closeModal, token }) => {
               onMouseLeave={stopSpeech}
             ></textarea>
 
-            {/* Tags Input and Submit Button */}
-            <div className="mt-4 flex flex-wrap items-center gap-4">
-              <div className="flex-grow gap-2">
-                <label className="text-sm text-gray-500">
-                  Tag authority* <span className="text-xs">(Optional)</span>
-                </label>
-                <input
-                  type="text"
-                  className="w-full mt-1 p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter tags separated by commas"
-                  value={tags}
-                  onChange={(e) => setTags(e.target.value)}
-                  onMouseEnter={() => speakText("Tag authority input")}
-                  onMouseLeave={stopSpeech}
-                />
-              </div>
+            {/* Tag Authority Dropdown */}
+            <div className="mt-4">
+              <label className="text-sm text-gray-500">
+                Tag Authority <span className="text-xs">(Optional)</span>
+              </label>
+              <select
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={tagAuthority}
+                onChange={(e) => setTagAuthority(e.target.value)}
+                onMouseEnter={() => speakText("Tag authority dropdown")}
+                onMouseLeave={stopSpeech}
+              >
+                <option value="">Select a role</option>
+                {roles.map((role, index) => (
+                  <option key={index} value={role}>
+                    {role}
+                  </option>
+                ))}
+              </select>
+            </div>
 
+            {/* Submit Button */}
+            <div className="mt-6 flex justify-end">
               <button
-                className="w-full md:w-auto bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-blue-700 mt-4 md:mt-0"
                 onClick={postSuggestion}
                 disabled={loading}
+                className={`py-2 px-6 rounded-md text-white ${
+                  loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
+                }`}
                 onMouseEnter={() => speakText("Post suggestion")}
                 onMouseLeave={stopSpeech}
               >
-                {loading ? "Posting..." : "Post suggestion"}
+                {loading ? "Posting..." : "Post Suggestion"}
               </button>
             </div>
-
-            {/* Success and Error Messages */}
-            {success && <p className="text-green-600 mt-4">{success}</p>}
-            {error && <p className="text-red-600 mt-4">{error}</p>}
           </div>
         </div>
+
+        {/* Notification */}
+        {notification.message && (
+          <Notification
+            message={notification.message}
+            type={notification.type}
+            onClose={() => setNotification({ message: "", type: "" })}
+          />
+        )}
       </>
     )
   );

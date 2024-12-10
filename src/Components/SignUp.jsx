@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Notification from "./Notification"; // Import the Notification component
 
 // Function to trigger speech synthesis
 const speakText = (text) => {
@@ -18,33 +19,28 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [regNumber, setRegNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // Loading state
-  const [notification, setNotification] = useState(null); // Notification object
+  const [loading, setLoading] = useState(false);
+  const [notification, setNotification] = useState(null); // Manage notifications
 
   const navigate = useNavigate();
 
-  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Validate form inputs
+    // Validate inputs
     if (!username.trim() || !regNumber.trim() || !password.trim()) {
-      setNotification({ type: "error", message: "Please fill in all fields" });
+      setNotification("Please fill in all fields.");
       return;
     }
 
     if (isNaN(regNumber)) {
-      setNotification({
-        type: "error",
-        message: "Registration number must be a valid number",
-      });
+      setNotification("Registration number must be a valid number.");
       return;
     }
 
-    setLoading(true); // Start loading spinner
+    setLoading(true);
 
     try {
-      // Make API call to register user
       const response = await axios.post(
         "https://dsb-yf9s.onrender.com/user",
         {
@@ -53,89 +49,33 @@ const SignUp = () => {
           password: password.trim(),
         },
         {
-          headers: {
-            "Content-Type": "application/json",
-            accept: "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
         }
       );
 
       if (response.status === 201) {
-        setNotification({
-          type: "success",
-          message: "Account created successfully! Redirecting...",
-        });
+        setNotification("Account created successfully! Redirecting...");
         setTimeout(() => {
           navigate("/signin");
-        }, 2000); // Redirect after 2 seconds
+        }, 2000);
       }
     } catch (error) {
-      setNotification({
-        type: "error",
-        message:
-          error.response?.data?.message ||
-          "An error occurred. Please try again.",
-      });
+      setNotification(
+        error.response?.data?.message || "An error occurred. Please try again."
+      );
     } finally {
-      setLoading(false); // Stop loading spinner
+      setLoading(false);
     }
-  };
-
-  // Notification styles
-  const notificationStyles = {
-    base: "fixed top-10 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg shadow-md text-sm w-96",
-    success: "bg-green-100 text-green-800 border border-green-300",
-    error: "bg-red-100 text-red-800 border border-red-300",
   };
 
   return (
     <div className="pt-2 mb-8 px-4 sm:px-6 lg:px-8 relative dark:bg-gray-900 dark:text-gray-200">
-      {/* Notification */}
+      {/* Notification Component */}
       {notification && (
-        <div
-          className={`${notificationStyles.base} ${
-            notification.type === "success"
-              ? notificationStyles.success
-              : notificationStyles.error
-          }`}
-        >
-          <div className="flex items-center mt-20">
-            <div className="mr-2 ">
-              {notification.type === "success" ? (
-                <svg
-                  className="w-5 h-2 text-green-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-5 h-5 text-red-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              )}
-            </div>
-            <span>{notification.message}</span>
-          </div>
-        </div>
+        <Notification
+          message={notification}
+          onClose={() => setNotification(null)} // Close the notification
+        />
       )}
 
       <div className="mx-auto max-w-screen-md mt-20 bg-sky-100 rounded-3xl px-4 py-16 sm:px-6 lg:px-8 dark:bg-gray-800 dark:text-gray-200">
@@ -149,7 +89,10 @@ const SignUp = () => {
           </h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className="mx-auto mb-0 mt-8 max-w-md space-y-4"
+        >
           <div>
             <label htmlFor="regNumber" className="sr-only">
               Registration Number

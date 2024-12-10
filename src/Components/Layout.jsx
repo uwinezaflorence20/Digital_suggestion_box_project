@@ -41,7 +41,7 @@ const Layout = () => {
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add('light');
     } else {
       document.documentElement.classList.remove('dark');
     }

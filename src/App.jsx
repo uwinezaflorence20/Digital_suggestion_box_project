@@ -32,7 +32,7 @@ function App() {
 
           {/* Student Routes */}
           <Route path="/student" element={<Layout2 />}>
-            <Route index element={<Home2 />} />
+            <Route index element={<Queue />} />
             <Route path="suggestion" element={<Suggestion />} />
             <Route path="inputsuggestion" element={<InputSuggestion />} />
             <Route path="pending" element={<Pending />} />
