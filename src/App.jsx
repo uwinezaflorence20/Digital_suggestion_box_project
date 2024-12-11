@@ -14,6 +14,7 @@ import Pending from "./Components/Pending";
 import Queue from "./Components/Queue";
 import Resolved from "./Components/Resolved";
 import MySuggestion from "./Components/MySuggestion";
+import MyReply from "./Components/MyReply";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="queue" element={<Queue />} />
             <Route path="resolved" element={<Resolved />} />
             <Route path="mysuggestion" element={<MySuggestion />} />
+            <Route path="myreply" element={<MyReply />} />
           </Route>
         </Routes>
       </BrowserRouter>

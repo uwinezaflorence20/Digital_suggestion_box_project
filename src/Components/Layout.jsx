@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';
-import { MdKeyboardArrowUp } from 'react-icons/md';
-import { useState, useEffect } from 'react';
-import Footer from './Footer';
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
+import { MdKeyboardArrowUp } from "react-icons/md";
+import { useState, useEffect } from "react";
+import Footer from "./Footer";
 
 const Layout = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,21 +19,21 @@ const Layout = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
-    const newMode = !darkMode ? 'light' : '';
-    localStorage.setItem('theme', newMode); 
+    const newMode = !darkMode ? "light" : "";
+    localStorage.setItem("theme", newMode);
   };
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem("theme");
     if (
-      savedTheme === 'dark' ||
-      (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      savedTheme === "dark" ||
+      (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       setDarkMode(true);
     }
@@ -41,23 +41,31 @@ const Layout = () => {
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('light');
+      document.documentElement.classList.add("light");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
+    <div className={`flex flex-col min-h-screen ${darkMode ? "dark" : ""}`}>
+      {/* Navbar */}
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <Outlet />
+
+      {/* Main Content */}
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+
+      {/* Footer */}
       <Footer />
-      
+
+      {/* Back to Top Button */}
       {isVisible && (
         <button
           onClick={scrollToTop}

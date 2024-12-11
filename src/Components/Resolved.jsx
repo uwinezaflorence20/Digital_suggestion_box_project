@@ -4,7 +4,7 @@ import { FaRegCommentDots } from "react-icons/fa";
 
 const Resolved = () => {
   // State to track upvotes and comment visibility
-  const [upvotes, setUpvotes] = useState(98);
+  const [upvotes, setUpvotes] = useState(140);
   const [isCommentVisible, setIsCommentVisible] = useState(false);
   const [comment, setComment] = useState(""); // Tracks the input comment
   const [comments, setComments] = useState([]); // Stores the list of comments
@@ -97,7 +97,7 @@ const Resolved = () => {
         />
         
         <div> 
-          <button 
+         <button 
             className="bg-green-600 px-2 py-1 text-white rounded-md"
             onMouseEnter={() => speakText("View reply")}
             onMouseLeave={stopSpeech}

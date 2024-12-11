@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import Notification from "./Notification"; // Importing the Notification component
 
 const InputSuggestion = ({ closeModal }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [suggestion, setSuggestion] = useState("");
-  const [tagAuthority, setTagAuthority] = useState(""); // For dropdown selection
+  const [tagAuthority, setTagAuthority] = useState("");
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState({ message: "", type: "" });
+  
+  const navigate = useNavigate(); // Initialize navigate hook
 
-  // List of roles for the dropdown
   const roles = [
     "CompusAdmin",
     "Principal",
@@ -39,17 +41,17 @@ const InputSuggestion = ({ closeModal }) => {
     setNotification({ message: "", type: "" });
 
     try {
-      const token = localStorage.getItem("token"); // Retrieve token from localStorage
+      const token = localStorage.getItem("token");
       if (!token) throw new Error("You must be logged in to post a suggestion.");
 
       const payload = {
-        by: 123, // Replace with the actual user ID if available
+        by: 123,
         content: suggestion.trim(),
-        tagAuthority: tagAuthority, // Attach selected role
+        tagAuthority: tagAuthority,
       };
 
-      const response = await axios.post(
-        "https://dsb-yf9s.onrender.com/suggestion", // Replace with your API endpoint
+      await axios.post(
+        "https://dsb-yf9s.onrender.com/suggestion",
         payload,
         {
           headers: {
@@ -59,15 +61,15 @@ const InputSuggestion = ({ closeModal }) => {
         }
       );
 
-      // Success handling
       setNotification({ message: "Suggestion posted successfully!", type: "green" });
       setSuggestion("");
       setTagAuthority("");
 
-      // Auto-close modal after success (optional)
+      // Auto-close modal and redirect
       setTimeout(() => {
         closeModal();
-      }, 3000);
+        navigate("/student"); // Redirect to "/student" page
+      }, 2000);
     } catch (err) {
       const errorMessage =
         err.response?.data?.error || err.message || "An unexpected error occurred.";
