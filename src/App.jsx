@@ -18,7 +18,7 @@ import MyReply from "./Components/MyReply";
 
 function App() {
   return (
-    <div className="dark:bg-gray-800 dark:text-gray-200">
+    <div className="dark:bg-gray-900 dark:text-gray-200">
       <BrowserRouter>
         <Routes>
           {/* Parent Layout */}

@@ -77,7 +77,7 @@ const Signin = () => {
       <div className="mx-auto max-w-screen-md mt-20 bg-sky-100 rounded-3xl px-4 py-16 sm:px-6 lg:px-8 dark:bg-gray-800 dark:text-gray-200">
         <div className="mx-auto max-w-lg text-center">
           <h1
-            className="text-2xl text-sky-800 font-bold sm:text-3xl dark:text-white"
+            className="text-2xl text-sky-800 font-bold sm:text-3xl dark:bg-gray-900 dark:text-white"
             onMouseEnter={() => speakText("Welcome back! Please sign in.")}
             onMouseLeave={stopSpeech}
           >
